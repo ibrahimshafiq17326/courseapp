@@ -11,7 +11,7 @@ const Main = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3002/sections")
+    .get(`${process.env.API_URL}/sections`)
       .then((res) => {
         setApiData(res.data);
         setSelectedVideo(res.data[0].video_link);

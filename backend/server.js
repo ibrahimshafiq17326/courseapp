@@ -4,13 +4,14 @@ const cors = require("cors");
 app.use(cors({ origin: "http://localhost:3000" }));
 
 const mysql = require("mysql2");
+const PORT = process.env.PORT || 3000;
 
 const connection = mysql.createConnection({
-  host: "127.0.0.1",
-  port: 3366,
-  user: "root",
-  password: "okok",
-  database: "accordian_data",
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
 });
 app.get("/sections", (req, res) => {
   connection.query("SELECT * FROM accordion_sections", (err, results) => {
@@ -20,6 +21,6 @@ app.get("/sections", (req, res) => {
   });
 });
 
-app.listen(3002, () => {
-  console.log("Server started on port 3002");
+app.listen(PORT, () => {
+  console.log("Server started on port ${PORT}");
 });
