@@ -8,10 +8,10 @@ import axios from "axios";
 const Main = () => {
   const [apidata, setApiData] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState("");
-
+  const API_URL = `http://localhost:${process.env.APP_PORT}/sections`;
   useEffect(() => {
     axios
-      .get("http://localhost:3002/sections")
+      .get(API_URL)
       .then((res) => {
         setApiData(res.data);
         setSelectedVideo(res.data[0].video_link);
